@@ -129,9 +129,9 @@ label[data-testid="stWidgetLabel"] p {{ font-size:.72rem; font-weight:600; text-
 .kpi .sub {{ font-size:.8rem; color:{MUTED}; margin-top:2px; }}
 
 /* section headings */
-.sec {{ display:flex; align-items:baseline; justify-content:space-between; margin:.4rem 0 .6rem; }}
-.sec h3 {{ font-family:'Fraunces', serif; font-size:1.45rem; font-weight:600; margin:0; padding:0; }}
-.sec .hint {{ color:{MUTED}; font-size:.85rem; }}
+.sec {{ display:flex; align-items:baseline; justify-content:space-between; gap:8px; flex-wrap:wrap; margin:.4rem 0 .6rem; }}
+.sec h3 {{ font-family:'Fraunces', serif; font-size:1.45rem; font-weight:600; margin:0; padding:0; flex:1 1 auto; min-width:0; }}
+.sec .hint {{ color:{MUTED}; font-size:.85rem; flex:1 1 auto; }}
 
 /* trend cards */
 [class*="st-key-card_"] {{ background:#fff; border:1px solid {LINE}; border-radius:18px; padding:18px 18px 12px;
@@ -172,6 +172,10 @@ label[data-testid="stWidgetLabel"] p {{ font-size:.72rem; font-weight:600; text-
 .ok {{ color:#0B7F5D; font-weight:700; }} .no {{ color:#C13B3B; font-weight:700; }}
 .stTabs [data-baseweb="tab-list"] {{ gap:6px; border-bottom:1px solid {LINE}; }}
 .stTabs [data-baseweb="tab"] {{ font-weight:600; padding:10px 16px; }}
+
+/* action filter: wrap onto a second row instead of hiding options behind horizontal scroll */
+div[role="radiogroup"][aria-label="Action"] {{ flex-wrap: wrap !important; overflow: visible !important; height: auto !important; }}
+div[role="radiogroup"][aria-label="Action"] button {{ flex: 0 0 auto; }}
 </style>
 """
 
