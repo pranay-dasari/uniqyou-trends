@@ -4,6 +4,48 @@ Early trend **detection** (momentum, not forecasting) + merchandising intelligen
 Signals → velocity/persistence/spike → cross-source confidence → lifecycle stage → **TEST / INCREASE / WATCH / PASS**.
 A decision-support tool, not a replacement for a buyer.
 
+## For interviewers — what this is and how it works
+
+**What it does.** Spots which fashion keywords are accelerating right now and recommends an
+action (TEST / INCREASE / WATCH / PASS) before a trend peaks. It detects momentum, not the
+future — it doesn't predict next month's demand.
+
+**The logic.**
+1. **Google Trends** (52 weeks, weekly) is the core signal — momentum (this week vs. the prior
+   4-week average), streak (consecutive rising weeks), and slope.
+2. **Wikipedia page views**, **magazine RSS feeds** (Vogue, Elle, Bazaar and 5 more), and **Reddit**
+   (optional) each independently vote on whether the same keyword is rising.
+3. **Cross-source agreement** becomes a confidence score — a keyword rising on Google alone is
+   noise; rising on 3–4 independent sources at once is a real signal.
+4. Momentum shape + confidence → lifecycle stage (Emerging/Rising/Peak/Declining/Spike) →
+   recommendation. See `pipeline/velocity.py`, `confidence.py`, `lifecycle.py`, `recommender.py`.
+
+The 35 keywords (`data/keywords.py`) are hand-curated across 6 categories for this demo — in
+production they'd be generated from the retailer's own catalog and search logs.
+
+**It's a prototype, by design.**
+- Fixed keyword list, not a live catalog feed.
+- No inventory, margin, MOQ or lead-time data — a human buyer still decides.
+- Backtest numbers on Demo data prove the *test harness* works, not real-world accuracy — see
+  the Backtest section below.
+- Google Trends is fetched via an unofficial library (rate-limited, ~30s); Reddit needs manual
+  API keys and is off by default.
+
+**Path to production / real-time.**
+
+| Prototype (now) | Production |
+|---|---|
+| Manual "Refresh" button | Scheduled job (cron/Airflow) every few hours |
+| 35 fixed keywords | Auto-generated from live catalog + search logs |
+| Unofficial Google Trends scraper | Official Trends API or a licensed data vendor |
+| Local file cache (`data/cache/`) | Real database (Postgres/BigQuery) storing full history |
+| Single Streamlit process does fetch + render | Separate ingestion service feeding a served dashboard, so one slow fetch doesn't block the UI |
+| No alerting | Slack/email alert when a trend crosses the TEST threshold |
+| Rule-based thresholds | Thresholds tuned against actual sell-through data, closing the feedback loop |
+
+The scoring logic itself (velocity → confidence → stage → action) doesn't need to change for
+production — it's the data freshness, scale, alerting and feedback loop around it that would.
+
 ## Run
 ```bash
 python3 -m venv .venv && source .venv/bin/activate
