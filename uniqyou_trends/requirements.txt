@@ -1,0 +1,14 @@
+streamlit>=1.35.0
+pandas>=2.0.0
+numpy>=1.24.0
+scipy>=1.11.0
+plotly>=5.18.0
+trendspy>=0.1.0        # Google Trends (pytrends replacement)
+praw>=7.7.0            # Reddit API
+feedparser>=6.0.11     # RSS feeds
+python-dotenv>=1.0.0   # API credentials
+
+# Optional extension (trend clustering) — not used by the core app; heavy installs:
+# spacy>=3.7.0
+# sentence-transformers>=2.6.0
+# scikit-learn>=1.3.0
