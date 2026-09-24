@@ -1,14 +1,17 @@
 # uniqyou's Instagram Post Review Tool (V1)
 
-A small internal Streamlit app: paste an Instagram post URL, the app resolves it
-through Meta's official Instagram oEmbed API, stores it in SQLite, and shows the
-post so people can upvote it and comment on it.
+**Live app:** https://uniqyou-trends-bzi3mwc43s4ejtefz4q4qe.streamlit.app/
+
+A small internal Streamlit app. Paste an Instagram post URL and the app resolves
+it through Meta's official Instagram oEmbed API, saves it, and shows the post so
+people can upvote it and comment on it. The live app stores data in Supabase
+(Postgres), and local runs default to a SQLite file.
 
 ```
 Streamlit UI (app.py, ui/)
       │
       ▼
-Service layer (services/)  ──────►  SQLite via SQLAlchemy (database/)
+Service layer (services/)  ──────►  SQLAlchemy (database/): Supabase Postgres or local SQLite
       │
       ▼
 InstagramClient (instagram/client.py)
