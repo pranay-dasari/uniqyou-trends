@@ -1,0 +1,14 @@
+.venv/
+__pycache__/
+*.pyc
+.pytest_cache/
+
+# Credentials
+.env
+.streamlit/secrets.toml
+
+# Local SQLite database files
+data/
+*.db
+*.db-journal
+*.sqlite3

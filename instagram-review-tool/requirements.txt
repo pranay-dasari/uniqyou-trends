@@ -1,0 +1,7 @@
+streamlit>=1.64,<2        # tested version; st.dialog(on_dismiss=...) for the post-detail modal
+SQLAlchemy>=2.0,<3
+psycopg[binary]>=3.2,<4   # Postgres driver (Supabase); unused with the default SQLite
+requests>=2.31,<3
+pydantic>=2.6,<3
+python-dotenv>=1.0,<2
+pytest>=8,<10

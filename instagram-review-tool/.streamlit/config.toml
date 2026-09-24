@@ -1,0 +1,10 @@
+# Red and black theme. Picked up when you run `streamlit run app.py` from this folder.
+[theme]
+base = "dark"
+primaryColor = "#E24B4A"
+backgroundColor = "#111111"
+secondaryBackgroundColor = "#1C1C1B"
+textColor = "#F1EFE8"
+
+[client]
+toolbarMode = "minimal"
